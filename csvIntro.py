@@ -321,7 +321,38 @@ days_visited_by_account = sum_grouped_items(engagement_by_account, 'has_visited'
 describe_data(days_visited_by_account.values())
 
 
+######################################
+#                 11                 #
+######################################
 
+## Create two lists of engagement data for paid students in the first week.
+## The first list should contain data for students who eventually pass the
+## subway project, and the second list should contain data for students
+## who do not.
+
+subway_project_lesson_keys = ['746169184', '3176718735']
+
+pass_subway_project = set()
+
+for submission in paid_submissions:
+    project = submission['lesson_key']
+    rating = submission['assigned_rating']
+    
+    if project in subway_project_lesson_keys and \
+        (rating == 'PASSED' or rating == 'DISTINCTION'):
+            pass_subway_project.add(submission['account_key'])
+
+passing_engagement = []
+non_passing_engagement = []
+
+for engagement_record in paid_engagement_in_first_week:
+    if engagement_record['account_key'] in pass_subway_project:
+        passing_engagement.append(engagement_record)
+    else:
+        non_passing_engagement.append(engagement_record)
+
+print len(passing_engagement)
+print len(non_passing_engagement)
 
 
 
