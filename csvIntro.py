@@ -209,6 +209,16 @@ paid_enrollments = remove_free_trial_cancel(non_udacity_enrollments)
 paid_engagement = remove_free_trial_cancel(non_udacity_engagement)
 paid_submissions = remove_free_trial_cancel(non_udacity_submissions)
 
+#Task to find Number of Visits in First Week
+#from: ######################################
+#                 10                 #
+
+for engagement_record in paid_engagement:
+    if engagement_record['num_courses_visited'] > 0:
+        engagement_record['has_visited'] = 1
+    else:
+        engagement_record['has_visited'] = 0
+
 
 #print len(paid_enrollments)     #1293
 #print len(paid_engagement)      #134549
@@ -279,8 +289,8 @@ def describe_data(data):
     
     
 total_minutes = total_minutes_by_account.values()
-print "Total minutes summary"
-describe_data(total_minutes)
+#print "Total minutes summary"
+#describe_data(total_minutes)
 
 
 #Lessons completed in first week
@@ -293,12 +303,22 @@ describe_data(total_minutes)
 ## the number of lessons completed by each student during the first week. Try creating
 ## one or more functions to re-use the code above.
 
-lessons_completed_by_account = sum_grouped_items(engagement_by_account, 'lessons_completed')
-print "Total lessons summary"
-describe_data(lessons_completed_by_account.values())
+#lessons_completed_by_account = sum_grouped_items(engagement_by_account, 'lessons_completed')
+#print "Total lessons summary"
+#describe_data(lessons_completed_by_account.values())
 
 
+##Number of Visits in First Week
+######################################
+#                 10                 #
+######################################
 
+## Find the mean, standard deviation, minimum, and maximum for the number of
+## days each student visits the classroom during the first week.
+
+print "Total days any course visited in the first week summary"
+days_visited_by_account = sum_grouped_items(engagement_by_account, 'has_visited')
+describe_data(days_visited_by_account.values())
 
 
 
