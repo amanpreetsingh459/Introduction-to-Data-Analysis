@@ -280,13 +280,15 @@ total_minutes_by_account = sum_grouped_items(engagement_by_account, 'total_minut
 # Summarize the data about minutes spent in the classroom
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 def describe_data(data):        
     print 'Mean:', np.mean(data)
     print 'Standard deviation:', np.std(data)
     print 'Minimum:', np.min(data)
     print 'Maximum:', np.max(data)
-    
+    plt.hist(data)
+    plt.show()
     
 total_minutes = total_minutes_by_account.values()
 #print "Total minutes summary"
@@ -400,7 +402,20 @@ describe_data(passing_visits.values())
 
 print '--------------------------------------------------------------'
 
-
+"""
+#Making Histograms
+plt.hist(non_passing_minutes.values())
+plt.show()
+plt.hist(passing_minutes.values())
+plt.show()
+plt.hist(non_passing_lessons.values())
+plt.show()
+plt.hist(passing_lessons.values())
+plt.show()
+plt.hist(non_passing_visits.values())
+plt.show()
+plt.hist(passing_visits.values())
+plt.show()"""
 
 
 
