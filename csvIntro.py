@@ -354,11 +354,51 @@ for engagement_record in paid_engagement_in_first_week:
 print len(passing_engagement)
 print len(non_passing_engagement)
 
+##Comparing the Two Student Groups(Passed/Failed)
+
+######################################
+#                 12                 #
+######################################
+
+## Compute some metrics you're interested in and see how they differ for
+## students who pass the subway project vs. students who don't. A good
+## starting point would be the metrics we looked at earlier (minutes spent
+## in the classroom, lessons completed, and days visited).
+
+passing_engagement_by_account = group_data(passing_engagement, 'account_key')
+non_passing_engagement_by_account = group_data(non_passing_engagement, 'account_key')
 
 
+#Total minutes spent comparison data for the students who pass/fail
+print '###non passing students###'
+non_passing_minutes = sum_grouped_items(non_passing_engagement_by_account, 'total_minutes_visited')
+describe_data(non_passing_minutes.values())
 
+print '###passing students###'
+passing_minutes = sum_grouped_items(passing_engagement_by_account, 'total_minutes_visited')
+describe_data(passing_minutes.values())
+print '--------------------------------------------------------------'
 
+#Total lessons completed comparison data for the students who pass/fail
+print '###non passing students###'
+non_passing_lessons = sum_grouped_items(non_passing_engagement_by_account, 'lessons_completed')
+describe_data(non_passing_lessons.values())
 
+print '###passing students###'
+passing_lessons = sum_grouped_items(passing_engagement_by_account, 'lessons_completed')
+describe_data(passing_lessons.values())
+print '--------------------------------------------------------------'
+
+#Total days visited by each student comparison data for the students who pass/fail
+print '###non passing students###'
+non_passing_visits = sum_grouped_items(non_passing_engagement_by_account, 'has_visited')
+describe_data(non_passing_visits.values())
+
+print '###passing students###'
+passing_visits = sum_grouped_items(passing_engagement_by_account, 'has_visited')
+describe_data(passing_visits.values())
+
+print '--------------------------------------------------------------'
 
 
 
