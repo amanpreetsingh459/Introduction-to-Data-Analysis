@@ -281,13 +281,14 @@ total_minutes_by_account = sum_grouped_items(engagement_by_account, 'total_minut
 
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 def describe_data(data):        
     print 'Mean:', np.mean(data)
     print 'Standard deviation:', np.std(data)
     print 'Minimum:', np.min(data)
     print 'Maximum:', np.max(data)
-    plt.hist(data)
+    plt.hist(data, bins=8)
     plt.show()
     
 total_minutes = total_minutes_by_account.values()
